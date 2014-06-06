@@ -1,0 +1,22 @@
+<?php
+
+include("config.php");
+
+$usuario 	= $_POST['usuario'];
+$senha 		= $_POST['senha'];
+
+if(isset($_POST['acao'])&& $_POST['acao']) == 'fazer_login'){
+
+	if($usuario == "" && $senha == ""){
+		echo"<script>alert('Campos vazios'); location.href='login.php'</script>";
+	}else{
+		$selectLogin = mysql_query("SELECT * FROM usuarios WHERE usuario = '$usuario' AND senha= '$senha'")
+	
+		if(mysql_num_rows($selectLogin)> 0){
+			echo"<script>location.href='painel.php'</script>";
+		}else{
+			echo"<script>alert('Senha incorreta!); location.href='login.php'</script">
+		}
+	}
+}
+
